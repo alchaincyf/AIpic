@@ -104,7 +104,7 @@ npm run build
 
 ```json
 {
-  "mcpServers"
+  "mcpServers": {
     "ai-image-generator": {
       "command": "npx",
       "args": ["@alchain/mcp-flux-web-image-generator@latest"],
