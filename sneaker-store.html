@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SneakerHub - 潮流球鞋专卖店</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .cart-icon {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/20b60590-6926-4d9a-b1ca-9b877105f476_0.png');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+
+        /* Featured Products */
+        .featured-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: #4ecdc4;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #45b7aa;
+        }
+
+        /* Categories */
+        .categories-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .category-info {
+            padding: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .category-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .newsletter-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            min-width: 300px;
+            outline: none;
+        }
+
+        .newsletter-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background: #ff5252;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .newsletter-input {
+                min-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">SneakerHub</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#products">产品</a></li>
+                        <li><a href="#brands">品牌</a></li>
+                        <li><a href="#sale">促销</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">🛒</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>发现你的完美球鞋</h1>
+            <p>最新潮流，最优品质，最佳价格</p>
+            <a href="#products" class="cta-button">立即购买</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-section" id="products">
+        <div class="container">
+            <h2 class="section-title">热门推荐</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image" id="product-image-1">
+                        <img src="https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/e5ad2cea-729a-405b-8a4c-d24bb81fe8f0_0.png" alt="Air Jordan 1 Retro High" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Air Jordan 1 Retro High</h3>
+                        <div class="product-price">¥1,299</div>
+                        <p class="product-description">经典复刻，传奇再现。舒适透气，时尚百搭。</p>
+                        <button class="add-to-cart">加入购物车</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image" id="product-image-2">
+                        <img src="https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/f38c4830-f0cf-4929-943a-02521620300b_0.png" alt="Nike Air Max 90" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Nike Air Max 90</h3>
+                        <div class="product-price">¥899</div>
+                        <p class="product-description">经典气垫科技，卓越缓震体验。街头潮流必备。</p>
+                        <button class="add-to-cart">加入购物车</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image" id="product-image-3">
+                        <img src="https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/3ddfab22-afae-44ea-a810-06901b61cda1_0.png" alt="Adidas Ultraboost 22" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Adidas Ultraboost 22</h3>
+                        <div class="product-price">¥1,499</div>
+                        <p class="product-description">革命性中底科技，无与伦比的能量回弹。</p>
+                        <button class="add-to-cart">加入购物车</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">热门分类</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-image" id="category-image-1">
+                        <img src="https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/28180f0d-8449-4d99-9e2f-ec7ccccd4c2f_0.png" alt="篮球鞋" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">篮球鞋</h3>
+                        <p class="category-count">120+ 款式</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image" id="category-image-2">
+                        <img src="https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/5397f799-fa5d-4e1a-9387-004bbba8aeae_0.png" alt="跑步鞋" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">跑步鞋</h3>
+                        <p class="category-count">80+ 款式</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image" id="category-image-3">
+                        <img src="https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/0d54abbc-addb-488d-ae52-42d3caf7af79_0.png" alt="休闲鞋" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">休闲鞋</h3>
+                        <p class="category-count">95+ 款式</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image" id="category-image-4">
+                        <img src="https://modelscope-studios.oss-cn-zhangjiakou.aliyuncs.com/aigc/text-to-image/b99228ff-f4ea-4a5e-aa8f-73bbc09be637_0.png" alt="限量版" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">限量版</h3>
+                        <p class="category-count">25+ 款式</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>订阅我们的新闻</h2>
+                <p>第一时间获取最新产品发布和独家优惠信息</p>
+                <div class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="输入您的邮箱地址">
+                    <button class="newsletter-button">订阅</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">招聘信息</a></li>
+                        <li><a href="#">新闻中心</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>客户服务</h3>
+                    <ul>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">退换政策</a></li>
+                        <li><a href="#">配送信息</a></li>
+                        <li><a href="#">尺码指南</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>热门品牌</h3>
+                    <ul>
+                        <li><a href="#">Nike</a></li>
+                        <li><a href="#">Adidas</a></li>
+                        <li><a href="#">Jordan</a></li>
+                        <li><a href="#">Puma</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">抖音官方</a></li>
+                        <li><a href="#">小红书</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 SneakerHub. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // 购物车按钮点击效果
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.textContent = '已添加到购物车';
+                    this.style.background = '#45b7aa';
+                    setTimeout(() => {
+                        this.textContent = '加入购物车';
+                        this.style.background = '#4ecdc4';
+                    }, 2000);
+                });
+            });
+
+            // 新闻订阅
+            document.querySelector('.newsletter-button').addEventListener('click', function() {
+                const email = document.querySelector('.newsletter-input').value;
+                if (email) {
+                    alert('感谢订阅！我们会将最新信息发送到您的邮箱。');
+                    document.querySelector('.newsletter-input').value = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

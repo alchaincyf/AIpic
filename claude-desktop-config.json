@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ai-image-generator": {
+      "command": "node",
+      "args": ["/path/to/ai-image-generator-mcp-server/dist/index.js"],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+} 
