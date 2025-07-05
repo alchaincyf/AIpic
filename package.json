@@ -1,18 +1,56 @@
 {
-  "name": "ai-image-generator-mcp-server",
+  "name": "ai-image-generator-mcp",
   "version": "1.0.0",
-  "description": "MCP Server for AI image generation using FLUX model",
+  "description": "MCP Server for AI image generation using ModelScope FLUX model. Supports webpage analysis, article image generation, and intelligent prompt translation.",
   "main": "dist/index.js",
+  "bin": {
+    "ai-image-generator-mcp": "dist/index.js"
+  },
   "type": "module",
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["mcp", "ai", "image", "generation", "flux"],
-  "author": "AI Assistant",
+  "keywords": [
+    "mcp",
+    "ai",
+    "image-generation",
+    "flux",
+    "modelscope",
+    "typescript",
+    "claude",
+    "cursor",
+    "image-ai",
+    "webpage-analysis",
+    "article-images"
+  ],
+  "author": {
+    "name": "AI Assistant",
+    "email": "ai@example.com"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/ai-image-generator-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/ai-image-generator-mcp/issues"
+  },
+  "homepage": "https://github.com/yourusername/ai-image-generator-mcp#readme",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "API_KEY_GUIDE.md",
+    "USAGE_GUIDE.md",
+    "QUICK_SETUP.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "zod": "^3.22.4",
@@ -26,5 +64,8 @@
     "@types/uuid": "^9.0.0",
     "typescript": "^5.0.0",
     "tsx": "^4.0.0"
+  },
+  "peerDependencies": {
+    "node": ">=18.0.0"
   }
 } 

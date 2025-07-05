@@ -1,0 +1,70 @@
+# Source files (only include compiled dist)
+src/
+tsconfig.json
+*.ts
+!*.d.ts
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test files
+test/
+tests/
+__tests__/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Build tools
+.travis.yml
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# Documentation that's not needed in package
+docs/
+examples/
+*.md
+!README.md
+!API_KEY_GUIDE.md
+!USAGE_GUIDE.md
+!QUICK_SETUP.md
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Development scripts
+setup-github.sh
+start.sh
+
+# Large reference files
+mcp.txt
+mcp-ts.txt
+sneaker-store.html
+
+# IDE configurations
+.vscode/
+.idea/
+
+# Package lock files (let users generate their own)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml 
