@@ -1,0 +1,81 @@
+#!/bin/bash
+
+echo "🚀 AI Image Generator MCP Server - GitHub仓库设置指南"
+echo "=================================================="
+echo ""
+
+# 检查Git仓库状态
+if [ ! -d ".git" ]; then
+    echo "❌ 错误：当前目录不是Git仓库"
+    exit 1
+fi
+
+echo "✅ Git仓库已初始化"
+echo "📁 项目文件已提交"
+echo ""
+
+echo "🔧 接下来请按照以下步骤操作："
+echo ""
+echo "方法一：使用GitHub CLI（推荐）"
+echo "1. 首先登录GitHub CLI："
+echo "   gh auth login"
+echo ""
+echo "2. 按照提示选择："
+echo "   - 选择 'GitHub.com'"
+echo "   - 选择 'HTTPS'"
+echo "   - 选择 'Login with a web browser'"
+echo "   - 复制显示的代码，在浏览器中打开链接并粘贴代码"
+echo ""
+echo "3. 登录成功后，创建仓库："
+echo "   gh repo create ai-image-generator-mcp --public --description \"AI Image Generator MCP Server - 智能图片生成MCP服务器，支持网页分析和文章配图，集成ModelScope FLUX模型\""
+echo ""
+echo "4. 添加远程仓库并推送代码："
+echo "   git remote add origin https://github.com/\$(gh api user --jq .login)/ai-image-generator-mcp.git"
+echo "   git branch -M main"
+echo "   git push -u origin main"
+echo ""
+
+echo "方法二：手动在GitHub网站创建"
+echo "1. 打开 https://github.com/new"
+echo "2. 仓库名称：ai-image-generator-mcp"
+echo "3. 描述：AI Image Generator MCP Server - 智能图片生成MCP服务器"
+echo "4. 设置为公开（Public）"
+echo "5. 不要初始化README、.gitignore或license（我们已经有了）"
+echo "6. 点击创建仓库"
+echo ""
+echo "7. 创建后，复制仓库URL，然后运行："
+echo "   git remote add origin [您的仓库URL]"
+echo "   git branch -M main"
+echo "   git push -u origin main"
+echo ""
+
+echo "📋 项目信息："
+echo "- 项目名称：AI Image Generator MCP Server"
+echo "- 主要功能：智能图片生成、网页分析、文章配图"
+echo "- 技术栈：TypeScript, MCP SDK, ModelScope API"
+echo "- 文件数量：$(git ls-files | wc -l | tr -d ' ') 个文件"
+echo "- 代码行数：$(git ls-files | xargs wc -l | tail -1 | awk '{print $1}') 行"
+echo ""
+
+echo "🎯 推荐的仓库设置："
+echo "- 添加 topics: mcp, ai, image-generation, typescript, modelscope"
+echo "- 启用 Issues 和 Discussions"
+echo "- 设置 branch protection rules for main branch"
+echo ""
+
+echo "📚 仓库将包含以下文档："
+echo "- README.md - 项目主要说明"
+echo "- API_KEY_GUIDE.md - API密钥配置指南"
+echo "- USAGE_GUIDE.md - 详细使用教程"
+echo "- QUICK_SETUP.md - 快速配置指南"
+echo "- 完整的源代码和配置文件"
+echo ""
+
+echo "✨ 设置完成后，其他用户就可以通过以下方式使用您的项目："
+echo "   git clone https://github.com/[您的用户名]/ai-image-generator-mcp.git"
+echo "   cd ai-image-generator-mcp"
+echo "   npm install"
+echo "   npm run build"
+echo ""
+
+echo "🎉 准备就绪！请选择上述任一方法来创建GitHub仓库。" 
